@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {StyleSheet, View, WebView} from "react-native";
+import {StyleSheet, View, WebView, ActivityIndicator} from "react-native";
 
 const styles = StyleSheet.create({
   container: {
@@ -11,10 +11,21 @@ const styles = StyleSheet.create({
 
 
 export default class WEBView extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLoaded: false
+    }
+  }
+  _onLoadEnd(){
+    this.setState({isLoaded: true});
+  }
   render(){
     return(
       <View style={styles.container}>
-        <WebView source={{uri: this.props.url}}/>
+        {(this.state.isLoaded) ? null :  <ActivityIndicator animating={true} color="#111" size="large" />}
+
+        <WebView source={{uri: this.props.url}} onLoadEnd={this._onLoadEnd()}/>
       </View>
     )
   }
