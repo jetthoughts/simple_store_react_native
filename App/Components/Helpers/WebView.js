@@ -11,21 +11,10 @@ const styles = StyleSheet.create({
 
 
 export default class WEBView extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isLoaded: false
-    }
-  }
-  _onLoadEnd(){
-    this.setState({isLoaded: true});
-  }
   render(){
     return(
       <View style={styles.container}>
-        {(this.state.isLoaded) ? null :  <ActivityIndicator animating={true} color="#111" size="large" />}
-
-        <WebView source={{uri: this.props.url}} onLoadEnd={this._onLoadEnd()}/>
+        <WebView source={{uri: this.props.url}}/>
       </View>
     )
   }

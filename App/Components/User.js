@@ -85,10 +85,6 @@ export default class User extends PureComponent {
     })
   }
 
-  componentWillUnmount(){
-    console.log('Pizdec');
-  }
-
   render() {
     const AnimatableTouchableHighlight = Animatable.createAnimatableComponent(TouchableHighlight);
 
