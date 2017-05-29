@@ -3,6 +3,7 @@ import {Image, StyleSheet, Text, TouchableHighlight, View} from "react-native";
 import {api} from "../Utils/api";
 import Profile from "./Profile";
 import Repositories from "./Repositories";
+import WebViewDemo from "./WebViewDemo";
 
 
 let styles = StyleSheet.create({
@@ -81,16 +82,25 @@ export default class User extends PureComponent {
       })
   }
 
+  goToWebView() {
+    this.props.navigator.push({
+      component: WebViewDemo,
+      title: 'Web Views Links'
+    })
+  }
+
   render() {
     return (
       <View style={styles.container}>
         <Image source={{uri: this.props.userInfo.avatar_url}} style={styles.image}/>
-        <Text style={styles.label}> User: {this.state.userName} </Text>
         <TouchableHighlight style={this.getBackground(1) } onPress={this.goToUser.bind(this)} underlayColor='blue'>
           <Text style={styles.text}> See profile</Text>
         </TouchableHighlight>
         <TouchableHighlight style={this.getBackground(2) } onPress={this.goToRepos.bind(this)} underlayColor='blue'>
           <Text style={styles.text}> Repositories</Text>
+        </TouchableHighlight>
+        <TouchableHighlight style={this.getBackground(1) } onPress={this.goToWebView.bind(this)} underlayColor='blue'>
+          <Text style={styles.text}> WebViews</Text>
         </TouchableHighlight>
       </View>
     )
